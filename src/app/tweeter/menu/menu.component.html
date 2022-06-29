@@ -1,0 +1,103 @@
+<div class="sidebar-menu">
+  <h2>User Profile</h2>
+
+  <div
+    class="sidebar-menu__item {{ menuLinkActive }}"
+    (click)="menuSelection('home')"
+  >
+    <img class="sidebar-menu__item-icon" />
+    Home
+  </div>
+  <div
+    class="sidebar-menu__item {{ userLinkActive }}"
+    (click)="menuSelection('user')"
+  >
+    <img class="sidebar-menu__item-icon" />
+    Users
+  </div>
+
+  <!-- <div class="sidebar-menu__item">
+    <img class="sidebar-menu__item-icon" />
+    New Messages
+  </div> -->
+
+  <div
+    class="sidebar-menu__item {{ profileLinkActive }}"
+    (click)="menuSelection('profile')"
+  >
+    <img class="sidebar-menu__item-icon" />
+    Profile
+  </div>
+
+  <div class="sidebar-menu__item" (click)="logout()">
+    <img class="sidebar-menu__item-icon" />
+    Logout
+  </div>
+</div>
+
+<!-- Old -->
+<!-- 
+<div class="sidebar-menu">
+  <img
+    src="../assets/svg/twitter.svg"
+    class="brand"
+    style="width: 100px; height: 100px"
+  />
+
+  <svg viewBox="328 355 335 276" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="
+    M 630, 425
+    A 195, 195 0 0 1 331, 600
+    A 142, 142 0 0 0 428, 570
+    A  70,  70 0 0 1 370, 523
+    A  70,  70 0 0 0 401, 521
+    A  70,  70 0 0 1 344, 455
+    A  70,  70 0 0 0 372, 460
+    A  70,  70 0 0 1 354, 370
+    A 195, 195 0 0 0 495, 442
+    A  67,  67 0 0 1 611, 380
+    A 117, 117 0 0 0 654, 363
+    A  65,  65 0 0 1 623, 401
+    A 117, 117 0 0 0 662, 390
+    A  65,  65 0 0 1 630, 425
+    Z"
+      style="fill: {{ currentColor }} "
+    />
+  </svg>
+
+  <h2>User Profile</h2>
+
+  <div
+    class="sidebar-menu__item {{ menuLinkActive }}"
+    (click)="menuSelection('home')"
+  >
+    <img src="../assets/svg/home.svg" class="sidebar-menu__item-icon" />
+    Home
+  </div>
+  <div
+    class="sidebar-menu__item {{ userLinkActive }}"
+    (click)="menuSelection('user')"
+  >
+    <img src="../assets/svg/explore.svg" class="sidebar-menu__item-icon" />
+    Users
+  </div>
+
+  <div class="sidebar-menu__item">
+    <img src="../assets/svg/messages.svg" class="sidebar-menu__item-icon" />
+    New Messages
+  </div>
+
+  <div
+    class="sidebar-menu__item {{ profileLinkActive }}"
+    (click)="menuSelection('profile')"
+  >
+    <img src="../assets/svg/profile.svg" class="sidebar-menu__item-icon" />
+    Profile
+  </div>
+
+  <div class="sidebar-menu__item" (click)="logout()">
+    <img src="../assets/svg/more.svg" class="sidebar-menu__item-icon" />
+    Logout
+  </div>
+</div> -->

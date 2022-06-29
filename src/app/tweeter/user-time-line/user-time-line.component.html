@@ -1,0 +1,178 @@
+<div *ngIf="!showUserTweetDetail" class="topnav">
+  <div class="search-container">
+    <form
+      #searchForm="ngForm"
+      (ngSubmit)="onUsernameUseridSearchSubmit(searchForm)"
+    >
+      <ng-container>
+        <!-- <label class="radio-inline" class="dropdown1">
+          <input
+            type="radio"
+            name="optradio"
+            value="username"
+            ngModel
+          />UserName
+        </label>
+        <label class="radio-inline" class="dropdown2">
+          <input type="radio" name="optradio" value="userid" ngModel />UserId
+        </label> -->
+      </ng-container>
+      <input
+        type="text"
+        placeholder="Enter UserName or UserId"
+        name="search"
+        ngModel
+      />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- UserList -->
+<div *ngIf="!showUserTweetDetail" class="container" style="margin-top: 10%">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="user_tweet"
+        *ngFor="let user of usersResponse"
+        (click)="userTweetmethod(user)"
+      >
+        <th scope="row">{{ user.userId }}</th>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- UserDetail Tweet -->
+<ng-container *ngIf="showUserTweetDetail">
+  <div class="card" style="margin-top: 70px">
+    <img src="../assets/svg/mylogo.png" class="logoIcon" />
+    <h3>{{ userTweetList.firstName }}_{{ userTweetList.lastName }}</h3>
+    <p class="title">{{ userTweetList.email }}</p>
+  </div>
+
+  <div
+    class="tweet"
+    *ngFor="let usertweet of userTweetList.userTweet"
+    style="margin-top: 30px"
+  >
+    <div class="tweet__main">
+      <div class="tweet__header">
+        <div class="tweet__author-name">TweetId - {{ usertweet.tweetId }}</div>
+        <div class="tweet__publish-time">{{ usertweet.createdAt | date }}</div>
+      </div>
+      <div class="tweet__content">{{ mainTweet(usertweet.text) }}</div>
+
+      <!-- ReTweet -->
+      <ng-container
+        *ngFor="let retweet of retweetsList"
+        style="padding-left: 20%"
+      >
+        <div class="tweet">
+          <img
+            class="tweet__author-logo"
+            src="../assets/images/profile-image-1.jpg"
+          />
+          <div class="tweet__main">
+            <div class="tweet__header">
+              <div class="tweet__author-name">{{ retweet.fullName }}</div>
+              <!-- <div class="tweet__author-slug">{{ retweet.email }}</div> -->
+              <div class="tweet__publish-time">
+                {{ retweet.retweetedCreationTime }}
+              </div>
+            </div>
+            <div class="tweet__content">
+              {{ retweet.reTweetText }}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="tweet__content px-5">
+          {{ retweet.fullName }}
+          {{ retweet.reTweetText }}
+          ==========================
+        </div> -->
+      </ng-container>
+
+      <!-- delete and update -->
+      <div
+        *ngIf="convertNumberToString(userTweetList.userId) == mainUserUserId"
+        style="margin-top: 10%"
+      >
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="
+            updatePost(
+              userTweetList.userId,
+              usertweet.tweetId,
+              usertweet.text,
+              content
+            )
+          "
+        >
+          Update
+        </button>
+        |
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deletePost(userTweetList.userId, usertweet.tweetId)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!--Update Tweet Modal-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">What's in your mind</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="updateForm" (ngSubmit)="onTweeetUpdateSubmit()">
+      <div class="form-group">
+        <label for="updateMessage">Your Tweet</label>
+        <textarea
+          id="tweet"
+          type="text"
+          rows="8"
+          cols="52"
+          formControlName="tweet"
+        >
+        </textarea>
+
+        <!-- <input id="tweet" type="text" formControlName="tweet" /> -->
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Save click')"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

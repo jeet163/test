@@ -1,0 +1,21 @@
+/* Main Pages */
+
+.layout {
+  display: grid;
+  grid-template-columns: 275px auto 350px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.layout__right-sidebar {
+  position: fixed;
+  width: 350px;
+}
+
+.header {
+  background-color: #360ad7;
+  text-align: center;
+}
+.layout__right-sidebar-container {
+  margin-left: 10%;
+}
